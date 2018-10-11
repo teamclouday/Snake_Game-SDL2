@@ -32,6 +32,12 @@ int main(int argc, char *argv[]){
     // process initial
     loadGame(&game);
 
+    game.font = TTF_OpenFont("./fonts/Crazy-Pixel.ttf", 48);
+    if(game.font == NULL){
+        printf("Cannot find the font file!\n");
+        exit(1);
+    }
+
     // game loop
     int done = 0;
     while(!done){
@@ -46,6 +52,8 @@ int main(int argc, char *argv[]){
         // delay
         //SDL_Delay(100);
     }
+
+    TTF_CloseFont(game.font);
 
     // destroy window and renderer
     SDL_DestroyWindow(window);
@@ -357,7 +365,7 @@ void restartGame(GameState *game){
     // wait for 2 seconds
     SDL_Delay(2000);
     // free the snake linked list
-    free(&game->snake);
+    freeList(game->snake.head);
     // redo the load
     loadGame(game);
 }
@@ -378,15 +386,21 @@ void drawScore(SDL_Renderer *renderer, GameState *game){
     else{
         numLen = 3;
     }
-    TTF_Font *font = TTF_OpenFont("./fonts/Crazy-Pixel.ttf", 48);
-    if(font == NULL){
-        printf("Cannot find the font file!\n");
-        exit(1);
-    }
     SDL_Color black = {0, 0, 0};
-    SDL_Surface *scoreSur = TTF_RenderText_Blended(font, scoreStr, black);
+    SDL_Surface *scoreSur = TTF_RenderText_Blended(game->font, scoreStr, black);
     SDL_Texture *scoreTex = SDL_CreateTextureFromSurface(renderer, scoreSur);
     SDL_Rect scoreRect = {0, -30, 20*numLen, 100};
     SDL_RenderCopy(renderer, scoreTex, NULL, &scoreRect);
     SDL_FreeSurface(scoreSur);
+    SDL_DestroyTexture(scoreTex);
+}
+
+// a function to free every node in the linked list
+void freeList(struct Node* head){
+    struct Node *tmp;
+    while(head != NULL){
+        tmp = head;
+        head = head->Child;
+        free(tmp);
+    }
 }

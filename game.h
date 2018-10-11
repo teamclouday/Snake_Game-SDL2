@@ -35,6 +35,7 @@ typedef struct{
     int dead;
     int stepsCount;
     int score;
+    TTF_Font *font;
 } GameState;
 
 
@@ -48,5 +49,6 @@ void moveBody(GameState *game);
 int correctXY(int num);
 void restartGame(GameState *game);
 void drawScore(SDL_Renderer *renderer, GameState *game);
+void freeList(struct Node* head);
 
 #endif
