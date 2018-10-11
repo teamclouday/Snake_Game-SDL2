@@ -19,8 +19,20 @@ Based on your OS, you may have to change the header file `#include "SDL2/SDL.h"`
 After that, execute `./run`
 
 ------
+**KeyBoard Control:**  
+`Esc` -> exit the window  
+`up` or `W` -> move up  
+`Down` or `S` -> move down  
+`Left` or `A` -> move left  
+`Right` or `D` -> move right  
+
+------
+**Sample Image:**  
+![Sample Image](./img/SampleIMG.png)  
+
+------
 **Problems:**  
-1. The direction changing is not very good, because it can only be changed if the head is on the grid(x=0, 20, 40... OR y=0, 20, 40...)  
+1. The direction changing is not very good, because it can only be changed if the head is on the grid(x=0, 20, 40... and y=0, 20, 40...)  
 2. Besides Windows10 and Raspbian, I haven't tried it on other OS  
 3. The game has no sound effects  
 4. There's only two types of food for snake  
