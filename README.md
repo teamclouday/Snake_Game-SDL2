@@ -7,7 +7,8 @@ A snake game wrote in C using SDL2 libraries
 **Dependencies:**  
 1. SDL2.h  
 2. SDL2_ttf.h  
-3. Regular C libraries(I use MinGW)  
+3. Regular C libraries(I use MinGW)
+4. SDL2.dll    
 
 ------
 **How to compile:**  
