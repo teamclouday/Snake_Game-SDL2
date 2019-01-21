@@ -13,7 +13,7 @@ A snake game wrote in C using SDL2 libraries
 ------
 **How to compile:**  
 ```bash
-gcc game.c Linked.c -o run `sdl2-config --cflags --libs` -lSDL2_ttf
+gcc -o run game.c Linked.c -lmingw32 -lSDL2main -lSDL2 -lSDL2_ttf
 ```  
 Based on your OS, you may have to change the header file `#include "SDL2/SDL.h"` to `#include "SDL.h"` as well as the `SDL_ttf.h` file  
 
