@@ -1,5 +1,7 @@
 # ignore the vscode file
 .vscode/*
 
-# ignore the compiled exe file
-run.exe
+# ignore the executable
+run*
+
+build/*

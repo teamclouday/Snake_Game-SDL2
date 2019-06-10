@@ -40,6 +40,9 @@ int main(int argc, char *argv[]){
 
     // game loop
     int done = 0;
+
+    Uint32 tNow = SDL_GetTicks();
+    Uint32 tPrev = SDL_GetTicks();
     while(!done){
         //deal with events
         done = ProcessEvent(window, &game);
@@ -50,7 +53,7 @@ int main(int argc, char *argv[]){
         // render it
         doRenderer(renderer, &game);
         // delay
-        //SDL_Delay(100);
+        timer(&tPrev, &tNow);
     }
 
     TTF_CloseFont(game.font);
@@ -403,4 +406,13 @@ void freeList(struct Node* head){
         head = head->Child;
         free(tmp);
     }
+}
+
+void timer(Uint32 *prev, Uint32 *now)
+{
+    *now = SDL_GetTicks();
+    Uint32 delta = *now - *prev;
+    if(delta < SPF)
+        SDL_Delay((Uint32)SPF - delta);
+    *prev = SDL_GetTicks();
 }

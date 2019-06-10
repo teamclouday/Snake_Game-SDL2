@@ -15,6 +15,8 @@
 
 #define moveEveryStep 2
 
+#define SPF (1000 / 60)
+
 typedef struct{
     int length;
     struct Node *head;
@@ -50,5 +52,6 @@ int correctXY(int num);
 void restartGame(GameState *game);
 void drawScore(SDL_Renderer *renderer, GameState *game);
 void freeList(struct Node* head);
+void timer(Uint32 *prev, Uint32 *now);
 
 #endif

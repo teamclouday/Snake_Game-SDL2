@@ -1,0 +1,28 @@
+cmake_minimum_required(VERSION 3.14)
+project(snake LANGUAGES C)
+
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O2 -g -Wall")
+
+SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR})
+SET(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+FILE(GLOB SRC_FILES "${CMAKE_SOURCE_DIR}/*.c")
+
+INCLUDE(FindPkgConfig)
+
+PKG_SEARCH_MODULE(SDL2 REQUIRED sdl2)
+PKG_SEARCH_MODULE(SDL2TTF REQUIRED SDL2_ttf)
+
+include_directories(
+    "${CMAKE_SOURCE_DIR}"
+    "${SDL2_INCLUDE_DIRS}"
+    "${SDL2TTF_INCLUDE_DIRS}"
+)
+
+add_executable(run ${SRC_FILES})
+
+target_link_libraries(run
+    "${SDL2_LIBRARIES}"
+    "${SDL2TTF_LIBRARIES}"
+)
