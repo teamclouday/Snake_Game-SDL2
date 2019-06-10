@@ -5,19 +5,22 @@ A snake game wrote in C using SDL2 libraries
 
 ------
 **Dependencies:**  
-1. SDL2.h  
-2. SDL2_ttf.h  
-3. Regular C libraries(I use MinGW)
-4. SDL2.dll    
+1. SDL2  
+2. SDL2_ttf    
 
 ------
 **How to compile:**  
 ```bash
 gcc -o run game.c Linked.c -lmingw32 -lSDL2main -lSDL2 -lSDL2_ttf
 ```  
-Based on your OS, you may have to change the header file `#include "SDL2/SDL.h"` to `#include "SDL.h"` as well as the `SDL_ttf.h` file  
+Based on your OS, you may alternatively use cmake:  
+```bash
+mkdir build && cd build
+cmake ..
+make
+```
 
-After that, execute `./run`
+After that, go back to root of this project and execute `./run`
 
 ------
 **KeyBoard Control:**  
@@ -33,8 +36,7 @@ After that, execute `./run`
 
 ------
 **Problems:**  
-1. The direction changing is not very good, because it can only be changed if the head is on the grid(x=0, 20, 40... and y=0, 20, 40...)  
-2. Besides Windows10 and Raspbian, I haven't tried it on other OS  
+1. The direction changing is not very good, because it can only be changed if the head is on the grid(x=0, 20, 40... and y=0, 20, 40...)   
 3. The game has no sound effects  
 4. There's only two types of food for snake  
 5. I haven't wrote anything to support a game controller  
