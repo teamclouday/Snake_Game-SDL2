@@ -172,11 +172,10 @@ void doRenderer(SDL_Renderer *renderer, GameState *game){
     }
     SDL_Rect food = {game->fruit.x, game->fruit.y, game->fruit.w, game->fruit.h};
     SDL_RenderFillRect(renderer, &food);
-    // draw current score
+    // draw score
     drawScore(renderer, game);
     // show present renderer
     SDL_RenderPresent(renderer);
-    SDL_Delay(0);
 }
 
 // function that move snake after key events are handled
@@ -394,10 +393,10 @@ void drawScore(SDL_Renderer *renderer, GameState *game){
     else{
         numLen = 3;
     }
-    SDL_Color black = {0, 0, 0};
-    SDL_Surface *scoreSur = TTF_RenderText_Blended(game->font, scoreStr, black);
+    SDL_Color black = {0,0,0,255};
+    SDL_Surface *scoreSur = TTF_RenderText_Solid(game->font, scoreStr, black);
     SDL_Texture *scoreTex = SDL_CreateTextureFromSurface(renderer, scoreSur);
-    SDL_Rect scoreRect = {0, -30, 20*numLen, 100};
+    SDL_Rect scoreRect = {10, -30, 20*numLen, 100};
     SDL_RenderCopy(renderer, scoreTex, NULL, &scoreRect);
     SDL_FreeSurface(scoreSur);
     SDL_DestroyTexture(scoreTex);
