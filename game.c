@@ -32,11 +32,15 @@ int main(int argc, char *argv[]){
     // process initial
     loadGame(&game);
 
-    game.font = TTF_OpenFont("./fonts/Crazy-Pixel.ttf", 48);
+    char *fontPath = malloc(strlen(MY_ROOT_DIR) + strlen("/fonts/Crazy-Pixel.ttf") + 1);
+    strcpy(fontPath, MY_ROOT_DIR);
+    strcat(fontPath, "/fonts/Crazy-Pixel.ttf");
+    game.font = TTF_OpenFont(fontPath, 48);
     if(game.font == NULL){
         printf("Cannot find the font file!\n");
         exit(1);
     }
+    free(fontPath);
 
     // game loop
     int done = 0;
@@ -172,6 +176,7 @@ void doRenderer(SDL_Renderer *renderer, GameState *game){
     drawScore(renderer, game);
     // show present renderer
     SDL_RenderPresent(renderer);
+    SDL_Delay(0);
 }
 
 // function that move snake after key events are handled

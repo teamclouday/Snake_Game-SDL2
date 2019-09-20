@@ -1,7 +1,6 @@
-# ignore the vscode file
 .vscode/*
-
-# ignore the executable
 run*
-
 build/*
+bin/*
+external/*
+!external/external.zip

@@ -5,6 +5,9 @@
 #include "SDL2/SDL_ttf.h"
 #include "Linked.h"
 
+#include <stdlib.h>
+#include <string.h>
+
 #define SNAKE_WIDTH 20
 #define SNAKE_HEIGHT 20
 
@@ -16,6 +19,10 @@
 #define moveEveryStep 2
 
 #define SPF (1000 / 60)
+
+#ifndef MY_ROOT_DIR
+#define MY_ROOT_DIR "."
+#endif
 
 typedef struct{
     int length;
@@ -39,8 +46,6 @@ typedef struct{
     int score;
     TTF_Font *font;
 } GameState;
-
-
 
 int ProcessEvent(SDL_Window *window, GameState *game);
 void loadGame(GameState *game);
